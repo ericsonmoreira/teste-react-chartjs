@@ -54,7 +54,7 @@ function App() {
       <Line data={chartData} height={400} width={800} options={{
         responsive: true,
         title: {
-          text: 'Progreção dos casos de Covid-19 em Tabuleiro do Norte - CE',
+          text: 'Progressão dos casos de Covid-19 em Tabuleiro do Norte - CE',
           display: true,
           fontSize: 20
         },
