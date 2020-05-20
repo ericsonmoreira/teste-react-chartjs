@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2'
 import { Container } from './styles'
+import Info from './components/Info'
 
 function App() {
 
@@ -34,11 +35,13 @@ function App() {
     fetch(url).then(res => res.json()).then(data => {
       data.results.reverse().map(result => {
         chartData.labels = [...chartData.labels, result.date]
-        chartData.datasets[0].data = [...chartData.datasets[0].data, result.last_available_confirmed] 
-        chartData.datasets[1].data = [...chartData.datasets[1].data, result.last_available_deaths] 
+        chartData.datasets[0].data = [...chartData.datasets[0].data, result.last_available_confirmed]
+        chartData.datasets[1].data = [...chartData.datasets[1].data, result.last_available_deaths]
       })
       setChartData(chartData)
-    }).catch(err => console.log(err))
+    }).catch(err =>
+      console.log(err)
+    )
   }
 
   useEffect(() => {
@@ -66,6 +69,7 @@ function App() {
           }]
         }
       }} />
+      <Info />
     </Container>
   );
 
