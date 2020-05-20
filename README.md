@@ -1,3 +1,7 @@
+# Teste Chart JS
+
+Link da aplcação [aqui](https://teste-react-chartjs.herokuapp.com/).
+
 ## Tecnologias usadas
 
 * [React JS](https://reactjs.org/) - Uma biblioteca JavaScript para criar interfaces de usuário.
