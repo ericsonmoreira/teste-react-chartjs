@@ -33,7 +33,7 @@ function App() {
   function handleDataSet() {
     const url = 'https://brasil.io/api/dataset/covid19/caso_full/data/?city_ibge_code=2313104'
     fetch(url).then(res => res.json()).then(data => {
-      data.results.reverse().map(result => {
+      data.results.reverse().forEach(result => {
         chartData.labels = [...chartData.labels, result.date]
         chartData.datasets[0].data = [...chartData.datasets[0].data, result.last_available_confirmed]
         chartData.datasets[1].data = [...chartData.datasets[1].data, result.last_available_deaths]
@@ -43,7 +43,7 @@ function App() {
       console.log(err)
     )
   }
-
+  
   useEffect(() => {
     drawnChart()
     handleDataSet()

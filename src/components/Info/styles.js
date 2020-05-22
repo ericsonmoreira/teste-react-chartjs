@@ -8,14 +8,11 @@ export const Container = styled.div`
   & img {
     height: 25px;
     width: 25px;
-    transition: .2s;
+    transition: all .2s;
   }
 
   & img:hover {
-  height: 50px;
-  width: 50px;
-  transition: .2s;
+    height: 50px;
+    width: 50px;
   }
 `;
-
-
