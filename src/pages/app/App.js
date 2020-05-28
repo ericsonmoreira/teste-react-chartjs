@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2'
 import { Container } from './styles'
-import Info from './components/Info'
+import Info from '../../components/Info'
 
 function App() {
 
@@ -43,7 +43,7 @@ function App() {
       console.log(err)
     )
   }
-  
+
   useEffect(() => {
     drawnChart()
     handleDataSet()
