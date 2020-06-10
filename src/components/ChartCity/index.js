@@ -50,8 +50,8 @@ function ChartCity({ city_ibge_code }) {
   }
 
   useEffect(() => {
-    drawnChart()
-    handleDataSet()
+    drawnChart();
+    handleDataSet();
   }, [])
 
   return (

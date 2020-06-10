@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-//`https://brasil.io/api/dataset/covid19/caso_full/data/?city_ibge_code=${city_ibge_code}`
-
-
 const url = 'https://brasil.io/api/dataset/covid19/caso_full/data/'
 
 /**
@@ -17,6 +14,18 @@ function useApiBrasilIO(city_ibge_code) {
     params: {
       city_ibge_code
     },
+    transformResponse: [
+      data => {
+        let response = JSON.parse(data);
+        response.results.forEach(result => {
+          let { date } = result;
+          let newDate = String(date).split('-').reverse().join('/');
+          result.date = newDate;
+        });
+        return response;
+      }
+    ]
+
   });
 
   return api;
