@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2'
 import { Container } from './styles';
+import useApiBrasilIO from '../../hooks/api';
 
-function ChartCity({city_ibge_code}) {
+function ChartCity({ city_ibge_code }) {
 
   // Dados do Chart
-  const [chartData, setChartData] = useState({})
-  const [cityName, setCityName] = useState('')
-  const [UF, setUF] = useState('')
+  const [chartData, setChartData] = useState({});
+  const [cityName, setCityName] = useState('');
+  const [UF, setUF] = useState('');
+  const api = useApiBrasilIO(city_ibge_code);
 
   // Desenhando o Chart
   const drawnChart = () => {
@@ -30,21 +32,21 @@ function ChartCity({city_ibge_code}) {
     })
   }
 
-  // A url da API está configurada para tabuleiro do norte -> city_ibge_code=2313104
+  /**
+   * Trata a obtenção dos dados e injeta as informações no Chart.
+   */
   function handleDataSet() {
-    const url = `https://brasil.io/api/dataset/covid19/caso_full/data/?city_ibge_code=${city_ibge_code}`
-    fetch(url).then(res => res.json()).then(data => {
-      data.results.reverse().forEach(result => {
+    api.then((response) => {
+      const { results } = response.data; // destructuring assignment
+      results.reverse().forEach(result => {
         chartData.labels = [...chartData.labels, result.date]
         chartData.datasets[0].data = [...chartData.datasets[0].data, result.last_available_confirmed]
         chartData.datasets[1].data = [...chartData.datasets[1].data, result.last_available_deaths]
-      })
-      setCityName(data.results[0].city) // setando o nome da cidade
-      setUF(data.results[0].state) // setando o nome do estado
-      setChartData(chartData)
-    }).catch(err =>
-      console.log(err)
-    )
+      });
+      setCityName(results[0].city); // setando o nome da cidade
+      setUF(results[0].state); // setando o nome do estado
+      setChartData(chartData); // setando o conteudo do Chart
+    });
   }
 
   useEffect(() => {

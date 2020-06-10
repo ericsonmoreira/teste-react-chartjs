@@ -2,19 +2,22 @@ import styled from 'styled-components';
 import { primaryColor, erroColor } from '../../colors'
 
 export const Container = styled.div`
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
   background-color: ${primaryColor};
-  border-radius: 5px;
-  padding: 1em;
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 
   & img {
+    align-self: center;
     width:5em;
     height:5em;
   }
 
   & .Form {
-    display: inline;
+    display: flex;
   }
 
   & .Field {
@@ -39,12 +42,31 @@ export const Container = styled.div`
     color: ${erroColor};
   }
 
-  & button{
-    background-color: azure;
-    color: #000;
-    padding: 0.5rem 2rem;
-    border: none;
-    border-radius: 7px;
-    margin-top: 2rem; 
-  }
+`;
+
+export const LoginContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${primaryColor};
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+`;
+
+export const SubTitle = styled.h3`
+
+`;
+
+export const FieldLogin = styled.div`
+  
+`;
+
+export const BtnLogin = styled.button`
+  background-color: azure;
+  color: #000;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 7px;
+  margin-top: 2rem; 
 `;
